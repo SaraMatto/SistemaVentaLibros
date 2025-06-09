@@ -1,0 +1,6 @@
+@SistemaABM_Libros.Server_HostAddress = http://localhost:5125
+
+GET {{SistemaABM_Libros.Server_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

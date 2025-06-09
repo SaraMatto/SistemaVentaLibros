@@ -1,0 +1,11 @@
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.deps.json
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.AssemblyInfoInputs.cache
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.AssemblyInfo.cs
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.csproj.CoreCompileInputs.cache
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\refint\SistemaABM_Libros_TranferObject.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\ref\SistemaABM_Libros_TranferObject.dll

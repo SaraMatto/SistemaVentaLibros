@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SistemaABM_Libros.Server.props" />
+</Project>

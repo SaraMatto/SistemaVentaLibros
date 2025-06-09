@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "SistemaABM_Libros_TranferObject/1.0.0": {
+        "runtime": {
+          "SistemaABM_Libros_TranferObject.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SistemaABM_Libros_TranferObject/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

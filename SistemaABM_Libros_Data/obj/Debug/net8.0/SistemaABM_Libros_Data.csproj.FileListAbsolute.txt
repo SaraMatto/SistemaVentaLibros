@@ -1,0 +1,17 @@
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.deps.json
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.runtimeconfig.json
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.pdb
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.csproj.AssemblyReference.cache
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.AssemblyInfoInputs.cache
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.AssemblyInfo.cs
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.csproj.CoreCompileInputs.cache
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\refint\SistemaABM_Libros_Data.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.pdb
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.genruntimeconfig.cache
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\ref\SistemaABM_Libros_Data.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaA.E76D60A5.Up2Date

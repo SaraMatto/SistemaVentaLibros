@@ -1,0 +1,10 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:62614",
+"RedirectUrl": "",
+"LaunchCommand": "npm run dev",
+"WorkingDirectory": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros.Server\\..\\sistemaabm_libros.client",
+"MaxTimeoutInSeconds": "120",
+"KeepRunning": "false"
+}
+}

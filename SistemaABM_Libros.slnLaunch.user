@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "SistemaABM_Libros.Server\\SistemaABM_Libros.Server.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "sistemaabm_libros.client\\sistemaabm_libros.client.esproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
