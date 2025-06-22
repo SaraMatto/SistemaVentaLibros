@@ -21,7 +21,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-builder.Services.AddScoped<IServicioUsuario, ServicioUsuario>();
+builder.Services.AddScoped<IServiceUsuario, ServicioUsuario>();
+builder.Services.AddScoped<IServiceCategoria, ServiceCategoria>();
+builder.Services.AddScoped<IServiceSubcategoria, ServiceSubcategoria>();
+builder.Services.AddScoped<IServicePedido, ServicePedido>();
+builder.Services.AddScoped<IServiceLibro, ServiceLibro>();
+builder.Services.AddScoped<IServiceDetallePedido, ServiceDetallePedido>();
 
 var app = builder.Build();
 

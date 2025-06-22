@@ -7,53 +7,53 @@ namespace SistemaABM_Libros.Server.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class UsuarioController : ControllerBase
+    public class CategoriaController : ControllerBase
     {
-        private readonly IServiceUsuario _servicioUsuario;
-        private readonly ILogger<UsuarioController> _logger;
+        private readonly IServiceCategoria _servicioCategoria;
+        private readonly ILogger<CategoriaController> _logger;
 
-        public UsuarioController(IServiceUsuario servicioUsuario, ILogger<UsuarioController> logger)
+        public CategoriaController(IServiceCategoria servicioCategoria, ILogger<CategoriaController> logger)
         {
-            _servicioUsuario = servicioUsuario;
+            _servicioCategoria = servicioCategoria;
             _logger = logger;
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<UsuarioDTO>>> GetUsuarios()
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias()
         {
             try
             {
-                var usuarios = await _servicioUsuario.GetAll();
-                return Ok(usuarios);
+                var categorias = await _servicioCategoria.GetAll();
+                return Ok(categorias);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al obtener todos los usuarios.");
+                _logger.LogError(ex, "Error al obtener todas las categorías.");
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<UsuarioDTO>> GetUsuario(int id)
+        public async Task<ActionResult<CategoriaDTO>> GetCategoria(int id)
         {
             try
             {
-                var usuario = await _servicioUsuario.GetById(id);
-                if (usuario == null)
+                var categoria = await _servicioCategoria.GetById(id);
+                if (categoria == null)
                 {
-                    return NotFound(new ResponseApi($"Usuario con ID {id} no encontrado.", false));
+                    return NotFound(new ResponseApi($"Categoría con ID {id} no encontrada.", false));
                 }
-                return Ok(usuario);
+                return Ok(categoria);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error al obtener el usuario con ID {id}.");
+                _logger.LogError(ex, $"Error al obtener la categoría con ID {id}.");
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseApi>> CrearUsuario([FromBody] UsuarioDTO nuevoUsuarioDto)
+        public async Task<ActionResult<ResponseApi>> CrearCategoria([FromBody] CategoriaDTO nuevaCategoriaDto)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace SistemaABM_Libros.Server.Controllers
                     return BadRequest(new ResponseApi("Fallo de validación.", false));
                 }
 
-                var response = await _servicioUsuario.Create(nuevoUsuarioDto);
+                var response = await _servicioCategoria.Create(nuevaCategoriaDto);
                 if (response.Estado)
                 {
                     return Ok(response);
@@ -74,59 +74,56 @@ namespace SistemaABM_Libros.Server.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al crear el usuario.");
+                _logger.LogError(ex, "Error al crear la categoría.");
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
 
         [HttpPut]
-        public async Task<ActionResult<ResponseApi>> PutUsuario([FromBody] UsuarioDTO usuarioActualizarDto)
+        public async Task<ActionResult<ResponseApi>> PutCategoria([FromBody] CategoriaDTO categoriaActualizarDto)
         {
             try
             {
-
                 if (!ModelState.IsValid)
                 {
                     return BadRequest(new ResponseApi("Fallo de validación.", false));
                 }
 
-                var response = await _servicioUsuario.Update(usuarioActualizarDto);
+                var response = await _servicioCategoria.Update(categoriaActualizarDto);
                 if (response.Estado)
                 {
                     return Ok(response);
                 }
                 else
                 {
-                 return NotFound(response);
+                    return NotFound(response);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error al actualizar el usuario con ID {usuarioActualizarDto.Id}.");
+                _logger.LogError(ex, $"Error al actualizar la categoría con ID {categoriaActualizarDto.Id}.");
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<ResponseApi>> DeleteUsuario(int id)
+        public async Task<ActionResult<ResponseApi>> DeleteCategoria(int id)
         {
             try
             {
-                var response = await _servicioUsuario.Delete(id);
+                var response = await _servicioCategoria.Delete(id);
                 if (response.Estado)
                 {
                     return Ok(response);
                 }
                 else
                 {
-
-                 return NotFound(response);
-
+                    return NotFound(response);
                 }
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error al eliminar el usuario con ID {id}.");
+                _logger.LogError(ex, $"Error al eliminar la categoría con ID {id}.");
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
