@@ -1,0 +1,57 @@
+.pedidos-tabla-wrapper {
+    padding: 1rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.pedidos-title {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    color: #2c3e50;
+}
+
+.tabla-responsive {
+    overflow-x: auto;
+}
+
+.pedidos-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+    .pedidos-tabla th, .pedidos-tabla td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .pedidos-tabla th {
+        background-color: #f4f6f8;
+        color: #333;
+        font-weight: bold;
+    }
+
+    .pedidos-tabla tr:hover {
+        background-color: #f0f8ff;
+    }
+
+.pedidos-loading,
+.pedidos-error,
+.pedidos-empty {
+    text-align: center;
+    margin-top: 2rem;
+    color: #777;
+}
+
+/* Responsive mobile */
+@media (max-width: 600px) {
+    .pedidos-tabla th, .pedidos-tabla td {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+}

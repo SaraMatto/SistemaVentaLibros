@@ -107,5 +107,20 @@ namespace SistemaABM_Libros.Server.Controllers
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
+
+        [HttpGet("usuario/{usuarioId}")]
+        public async Task<ActionResult<IEnumerable<PedidoDTO>>> GetPedidosPorUsuario(int usuarioId)
+        {
+            try
+            {
+                var pedidos = await _servicioPedido.GetByUsuarioId(usuarioId);
+                return Ok(pedidos);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al obtener pedidos del usuario {usuarioId}.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
     }
 }

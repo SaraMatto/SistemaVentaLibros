@@ -1,0 +1,181 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Your existing background */
+    overflow-x: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.libros-wrapper {
+    width: 100%;
+    padding: 2rem;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    max-width: 1400px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.libros-title {
+    margin-bottom: 2rem;
+    color: #2d3748;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.libros-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+
+.libro-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+    .libro-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+    }
+
+.libro-imagen img {
+    width: 150px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.libro-info {
+    text-align: left; /* Keep this for other text in libro-info like paragraphs */
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+    .libro-info h3 {
+        font-size: 1rem;
+        margin: 0 0 0.5rem;
+        color: #2d3748;
+        white-space: normal; /* Allows title to wrap if it's too long */
+        word-break: break-word; /* Breaks long words if necessary to prevent overflow */
+        text-align: center; /* <<< THIS IS THE ADDITION TO CENTER THE TITLE */
+    }
+
+    .libro-info p {
+        margin: 0.2rem 0;
+        color: #4a5568;
+        font-size: 0.9rem;
+    }
+
+.libro-actions {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-comprar {
+    background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+    .btn-comprar:hover {
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-comprar:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(90deg, #705cb5 0%, #5d6eeb 100%);
+    }
+
+
+/* Old edit/delete buttons (kept for reference if you ever re-enable them) */
+.btn-editar,
+.btn-eliminar {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.btn-editar {
+    background-color: #3182ce;
+    color: white;
+}
+
+.btn-eliminar {
+    background-color: #e53e3e;
+    color: white;
+}
+
+.btn-editar:hover {
+    background-color: #2b6cb0;
+}
+
+.btn-eliminar:hover {
+    background-color: #c53030;
+}
+
+.error {
+    color: #e53e3e;
+    font-weight: 600;
+    margin: 1rem 0;
+}
+
+.loading,
+.no-libros {
+    color: #4a5568;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    .libros-wrapper {
+        padding: 1rem;
+    }
+
+    .libros-title {
+        font-size: 1.5rem;
+    }
+
+    .libro-info h3 {
+        font-size: 0.95rem;
+    }
+
+    .libro-info p {
+        font-size: 0.85rem;
+    }
+}

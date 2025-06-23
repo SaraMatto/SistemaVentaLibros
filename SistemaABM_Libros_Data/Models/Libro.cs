@@ -31,6 +31,8 @@ public partial class Libro
 
     public string? EstadoLibro { get; set; }
 
+    public string? Imagen { get; set; }
+
     public virtual ICollection<DetallePedido> DetallePedidos { get; set; } = new List<DetallePedido>();
 
     public virtual Subcategoria Subcategoria { get; set; } = null!;

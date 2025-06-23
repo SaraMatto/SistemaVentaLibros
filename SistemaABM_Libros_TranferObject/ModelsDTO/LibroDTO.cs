@@ -21,5 +21,9 @@ namespace SistemaABM_Libros_TranferObject.ModelsDTO
         public int? AnioPublicacion { get; set; }
         public string? Descripcion { get; set; }
         public string? EstadoLibro { get; set; }
+        public string? Imagen { get; set; }
+
+        public SubcategoriaDTO? Subcategoria { get; set; } 
     }
+
 }

@@ -13,10 +13,16 @@ namespace SistemaABM_Libros_Repository.Sevice
         private readonly IGenericRepository<Pedido> _repoPedido;
         private readonly IMapper _mapper;
         private readonly ILogger<ServicePedido> _logger;
+        private readonly IGenericRepository<DetallePedido> _repoDetalle; 
 
-        public ServicePedido(IGenericRepository<Pedido> repoPedido, IMapper mapper, ILogger<ServicePedido> logger)
+        public ServicePedido(
+            IGenericRepository<Pedido> repoPedido,
+            IGenericRepository<DetallePedido> repoDetalle,
+            IMapper mapper,
+            ILogger<ServicePedido> logger)
         {
             _repoPedido = repoPedido;
+            _repoDetalle = repoDetalle; 
             _mapper = mapper;
             _logger = logger;
         }
@@ -103,22 +109,47 @@ namespace SistemaABM_Libros_Repository.Sevice
                     return new ResponseApi("Los datos del pedido no pueden ser nulos.", false);
                 }
 
-                var existente = await _repoPedido.GetByIdAsync(pedidoActualizar.Id);
+                var existente = await _repoPedido.GetByIdAsync(pedidoActualizar.PedidoID);
                 if (existente == null)
                 {
-                    _logger.LogWarning("Intento de actualizar pedido inexistente con ID: {Id}", pedidoActualizar.Id);
+                    _logger.LogWarning("Intento de actualizar pedido inexistente con ID: {Id}", pedidoActualizar.PedidoID);
                     return new ResponseApi("Pedido no encontrado.", false);
                 }
 
                 _mapper.Map(pedidoActualizar, existente);
                 await _repoPedido.UpdateAsync(existente);
-                _logger.LogInformation("Pedido actualizado exitosamente con ID: {Id}", pedidoActualizar.Id);
+                _logger.LogInformation("Pedido actualizado exitosamente con ID: {Id}", pedidoActualizar.PedidoID);
                 return new ResponseApi("Pedido actualizado exitosamente.", true);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error al actualizar el pedido con ID: {Id}", pedidoActualizar?.Id);
+                _logger.LogError(ex, "Error al actualizar el pedido con ID: {Id}", pedidoActualizar?.PedidoID);
                 return new ResponseApi($"Error al actualizar el pedido. Detalles: {ex.Message}", false);
+            }
+        }
+
+        public async Task<IEnumerable<PedidoDTO>> GetByUsuarioId(int usuarioId)
+        {
+            try
+            {
+                var pedidos = await _repoPedido.GetAllAsync(p => p.UsuarioId == usuarioId);
+
+                var pedidosDto = _mapper.Map<List<PedidoDTO>>(pedidos);
+
+                foreach (var pedidoDto in pedidosDto)
+                {
+                    var detalles = await _repoDetalle.GetAllAsync(d => d.PedidoId == pedidoDto.PedidoID);
+                    var detallesDto = _mapper.Map<List<DetallePedidoDTO>>(detalles);
+
+                    pedidoDto.Detalles = detallesDto;
+                }
+
+                return pedidosDto;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener pedidos del usuario con ID: {UsuarioId}", usuarioId);
+                return Enumerable.Empty<PedidoDTO>();
             }
         }
     }

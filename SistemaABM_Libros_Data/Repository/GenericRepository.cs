@@ -65,5 +65,10 @@ namespace SistemaABM_Libros_Data.Repository
 
             return null;
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filtro)
+        {
+            return await _dbSet.Where(filtro).ToListAsync();
+        }
     }
 }

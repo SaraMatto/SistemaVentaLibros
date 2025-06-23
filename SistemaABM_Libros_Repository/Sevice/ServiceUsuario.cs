@@ -5,6 +5,7 @@ using SistemaABM_Libros_Data.Response;
 using SistemaABM_Libros_Repository.Interface;
 using SistemaABM_Libros_TranferObject.ModelsDTO;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaABM_Libros_Repository.Sevice
 {
@@ -91,6 +92,24 @@ namespace SistemaABM_Libros_Repository.Sevice
                 _logger.LogError(ex, "Error al recuperar usuario con ID: {UserId}", id);
                 return null;
             }
+        }
+
+        public async Task<ResponseApi> Register(Usuario usuario)
+        {
+            var existe = await _usuarioRepository.GetByEmailAsync(usuario.Email);
+            if (existe != null)
+                return new ResponseApi("El correo ya está registrado", false);
+
+            usuario.FechaRegistro = DateTime.Now;
+
+            await _usuarioRepository.AddAsync(usuario);
+
+            return new ResponseApi("Usuario registrado exitosamente", true);
+        }
+
+        public async Task<Usuario?> Login(string email, string password)
+        {
+            return await _usuarioRepository.GetByEmailAsync(email);
         }
 
         public async Task<ResponseApi> Update(UsuarioDTO usuarioActualizar)

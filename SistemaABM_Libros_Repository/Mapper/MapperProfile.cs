@@ -2,96 +2,67 @@
 using SistemaABM_Libros_Data.Models;
 using SistemaABM_Libros_TranferObject.ModelsDTO;
 
-namespace SistemaABM_Libros_Data.Mapper
+public class MapperProfile : Profile
 {
-    public class MapperProfile : Profile
+    public MapperProfile()
     {
-        public MapperProfile()
-        {
-            // Usuario
-            CreateMap<Usuario, UsuarioDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.UsuarioId))
-                .ForMember(dest => dest.FechaNacimiento, opt => opt.MapFrom(src => src.FechaNacimiento));
+        // Libro ↔ LibroDTO
+        CreateMap<Libro, LibroDTO>()
+            .ForMember(d => d.Id, o => o.MapFrom(s => s.LibroId))
+            .ForMember(d => d.SubcategoriaId, o => o.MapFrom(s => s.SubcategoriaId))
+            .ForMember(d => d.Titulo, o => o.MapFrom(s => s.Titulo))
+            // ... otras propiedades ...
+            .ForMember(d => d.Imagen, o => o.MapFrom(s => s.Imagen))
+            .ForMember(d => d.Subcategoria, o => o.MapFrom(s => s.Subcategoria));
 
-            CreateMap<UsuarioDTO, Usuario>()
-                .ForMember(dest => dest.UsuarioId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.PasswordHash, opt => opt.MapFrom(src => HashContraseña(src.Contraseña)))
-                .ForMember(dest => dest.Pedidos, opt => opt.Ignore())
-                .ForMember(dest => dest.FechaRegistro, opt => opt.MapFrom(src => DateTime.Now))
-                .ForMember(dest => dest.FechaNacimiento, opt => opt.MapFrom(src => src.FechaNacimiento));
+        CreateMap<LibroDTO, Libro>()
+            .ForMember(d => d.LibroId, o => o.MapFrom(s => s.Id))
+            .ForMember(d => d.SubcategoriaId, o => o.MapFrom(s => s.SubcategoriaId))
+            .ForMember(d => d.Imagen, o => o.MapFrom(s => s.Imagen))
+            .ForMember(d => d.DetallePedidos, o => o.Ignore())
+            .ForMember(d => d.Subcategoria, o => o.Ignore());
 
-            // Categoria
-            CreateMap<Categoria, CategoriaDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.CategoriaId));
+        // Subcategoria ↔ SubcategoriaDTO
+        CreateMap<Subcategoria, SubcategoriaDTO>()
+            .ForMember(d => d.Id, o => o.MapFrom(s => s.SubcategoriaId))
+            .ForMember(d => d.CategoriaId, o => o.MapFrom(s => s.CategoriaId))
+            .ForMember(d => d.NombreSubcategoria, o => o.MapFrom(s => s.NombreSubcategoria))
+            .ForMember(d => d.Descripcion, o => o.MapFrom(s => s.Descripcion))
+            .ForMember(d => d.Categoria, o => o.MapFrom(s => s.Categoria));
 
-            CreateMap<CategoriaDTO, Categoria>()
-                .ForMember(dest => dest.CategoriaId, opt => opt.MapFrom(src => src.Id));
+        CreateMap<SubcategoriaDTO, Subcategoria>()
+            .ForMember(d => d.SubcategoriaId, o => o.MapFrom(s => s.Id))
+            .ForMember(d => d.Categoria, o => o.Ignore());
 
-            // SubCategoria
-            CreateMap<Subcategoria, SubcategoriaDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.SubcategoriaId))
-                .ForMember(dest => dest.CategoriaId, opt => opt.MapFrom(src => src.CategoriaId));
+        // Categoria ↔ CategoriaDTO
+        CreateMap<Categoria, CategoriaDTO>()
+            .ForMember(d => d.Id, o => o.MapFrom(s => s.CategoriaId))
+            .ForMember(d => d.NombreCategoria, o => o.MapFrom(s => s.NombreCategoria))
+            .ForMember(d => d.Description, o => o.MapFrom(s => s.Descripcion));
 
-            CreateMap<SubcategoriaDTO, Subcategoria>()
-                .ForMember(dest => dest.SubcategoriaId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Categoria, opt => opt.Ignore());
+        CreateMap<CategoriaDTO, Categoria>()
+            .ForMember(d => d.CategoriaId, o => o.MapFrom(s => s.Id));
 
-            // Libro
-            CreateMap<Libro, LibroDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.LibroId))
-                .ForMember(dest => dest.SubcategoriaId, opt => opt.MapFrom(src => src.SubcategoriaId))
-                .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Titulo))
-                .ForMember(dest => dest.Autor, opt => opt.MapFrom(src => src.Autor))
-                .ForMember(dest => dest.ISBN, opt => opt.MapFrom(src => src.Isbn))
-                .ForMember(dest => dest.TipoLibro, opt => opt.MapFrom(src => src.TipoLibro))
-                .ForMember(dest => dest.Precio, opt => opt.MapFrom(src => src.Precio))
-                .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.Stock))
-                .ForMember(dest => dest.Idioma, opt => opt.MapFrom(src => src.Idioma))
-                .ForMember(dest => dest.Editorial, opt => opt.MapFrom(src => src.Editorial))
-                .ForMember(dest => dest.AnioPublicacion, opt => opt.MapFrom(src => src.AnioPublicacion))
-                .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
-                .ForMember(dest => dest.EstadoLibro, opt => opt.MapFrom(src => src.EstadoLibro));
+        // DetallePedido ↔ DetallePedidoDTO
+        CreateMap<DetallePedido, DetallePedidoDTO>()
+            .ForMember(d => d.Id, o => o.MapFrom(s => s.DetallePedidoId))
+            .ForMember(d => d.TituloLibro, o => o.MapFrom(s => s.Libro.Titulo))
+            .ForMember(d => d.Libro, o => o.MapFrom(s => s.Libro));
 
-            CreateMap<LibroDTO, Libro>()
-                .ForMember(dest => dest.LibroId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.SubcategoriaId, opt => opt.MapFrom(src => src.SubcategoriaId))
-                .ForMember(dest => dest.Titulo, opt => opt.MapFrom(src => src.Titulo))
-                .ForMember(dest => dest.Autor, opt => opt.MapFrom(src => src.Autor))
-                .ForMember(dest => dest.Isbn, opt => opt.MapFrom(src => src.ISBN))
-                .ForMember(dest => dest.TipoLibro, opt => opt.MapFrom(src => src.TipoLibro))
-                .ForMember(dest => dest.Precio, opt => opt.MapFrom(src => src.Precio))
-                .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.Stock))
-                .ForMember(dest => dest.Idioma, opt => opt.MapFrom(src => src.Idioma))
-                .ForMember(dest => dest.Editorial, opt => opt.MapFrom(src => src.Editorial))
-                .ForMember(dest => dest.AnioPublicacion, opt => opt.MapFrom(src => src.AnioPublicacion))
-                .ForMember(dest => dest.Descripcion, opt => opt.MapFrom(src => src.Descripcion))
-                .ForMember(dest => dest.EstadoLibro, opt => opt.MapFrom(src => src.EstadoLibro))
-                .ForMember(dest => dest.DetallePedidos, opt => opt.Ignore())
-                .ForMember(dest => dest.Subcategoria, opt => opt.Ignore());
+        CreateMap<DetallePedidoDTO, DetallePedido>()
+            .ForMember(d => d.DetallePedidoId, o => o.MapFrom(s => s.Id))
+            .ForMember(d => d.Pedido, o => o.Ignore())
+            .ForMember(d => d.Libro, o => o.Ignore());
 
-            // DetallePedido
-            CreateMap<DetallePedido, DetallePedidoDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DetallePedidoId));
+        // Pedido ↔ PedidoDTO
+        CreateMap<Pedido, PedidoDTO>()
+            .ForMember(d => d.PedidoID, o => o.MapFrom(s => s.PedidoId))
+            .ForMember(d => d.UsuarioId, o => o.MapFrom(s => s.UsuarioId))
+            .ForMember(d => d.Detalles, o => o.MapFrom(s => s.DetallePedidos));
 
-            CreateMap<DetallePedidoDTO, DetallePedido>()
-                .ForMember(dest => dest.DetallePedidoId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Pedido, opt => opt.Ignore())
-                .ForMember(dest => dest.Libro, opt => opt.Ignore());
-
-            // Pedido
-            CreateMap<Pedido, PedidoDTO>()
-                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PedidoId))
-                .ForMember(dest => dest.UsuarioId, opt => opt.MapFrom(src => src.UsuarioId));
-
-            CreateMap<PedidoDTO, Pedido>()
-                .ForMember(dest => dest.PedidoId, opt => opt.MapFrom(src => src.Id))
-                .ForMember(dest => dest.Usuario, opt => opt.Ignore())
-                .ForMember(dest => dest.DetallePedidos, opt => opt.Ignore());
-        }
-
-        private string HashContraseña(string contraseña)
-        {
-            return $"HASHEADA_{contraseña}_SEGURAMENTE";
-        }
+        CreateMap<PedidoDTO, Pedido>()
+            .ForMember(d => d.PedidoId, o => o.MapFrom(s => s.PedidoID))
+            .ForMember(d => d.Usuario, o => o.Ignore())
+            .ForMember(d => d.DetallePedidos, o => o.Ignore());
     }
 }

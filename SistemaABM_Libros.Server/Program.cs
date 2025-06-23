@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using SistemaABM_Libros_Data.Mapper;
+using Microsoft.Extensions.FileProviders;
 using SistemaABM_Libros_Data.Models;
 using SistemaABM_Libros_Data.Repository;
 using SistemaABM_Libros_Repository.Interface;
@@ -28,10 +28,26 @@ builder.Services.AddScoped<IServicePedido, ServicePedido>();
 builder.Services.AddScoped<IServiceLibro, ServiceLibro>();
 builder.Services.AddScoped<IServiceDetallePedido, ServiceDetallePedido>();
 
-var app = builder.Build();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+        policy.WithOrigins("https://localhost:62614") // origen exacto de tu front
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowCredentials());
+});
 
+
+var app = builder.Build();
+// Habilitar CORS usando la política definida
+app.UseCors("AllowAll");
 app.UseDefaultFiles();
-app.UseStaticFiles();
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Img")),
+    RequestPath = "/img"
+});
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

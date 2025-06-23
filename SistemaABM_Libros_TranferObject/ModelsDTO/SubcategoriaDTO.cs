@@ -6,6 +6,8 @@
         public int CategoriaId { get; set; }
         public string? NombreSubcategoria { get; set; }
         public string? Descripcion { get; set; }
+
+        public CategoriaDTO? Categoria { get; set; } 
     }
 
 }

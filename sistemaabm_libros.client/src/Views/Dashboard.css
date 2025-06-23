@@ -1,0 +1,80 @@
+/* Dashboard.css */
+
+.dashboard-wrapper {
+    height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2d3748;
+}
+
+.dashboard-nav {
+    background: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 0 0 12px 12px;
+}
+
+.dashboard-logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #5a67d8; /* mismo color azul del botón activo */
+}
+
+.dashboard-menu {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+
+    .dashboard-menu li {
+        cursor: pointer;
+    }
+
+        .dashboard-menu li a {
+            text-decoration: none;
+            font-weight: 600;
+            padding: 10px 20px;
+            border-radius: 8px;
+            background-color: #e2e8f0; /* fondo gris suave igual botones toggle */
+            color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: inline-block;
+        }
+
+            .dashboard-menu li a.active,
+            .dashboard-menu li a:hover {
+                background-color: #5a67d8;
+                color: white;
+                box-shadow: 0 4px 12px rgba(90, 103, 216, 0.4);
+            }
+
+.dashboard-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+}
+.dashboard-footer {
+    background: white;
+    text-align: center;
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #2d3748;
+    box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 12px 12px 0 0;
+    margin-top: auto;
+}
+2

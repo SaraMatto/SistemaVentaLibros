@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SistemaABM_Libros_Data.Models;
 using SistemaABM_Libros_Data.Response;
 using SistemaABM_Libros_Repository.Interface;
 using SistemaABM_Libros_TranferObject.ModelsDTO;
@@ -16,6 +18,48 @@ namespace SistemaABM_Libros.Server.Controllers
         {
             _servicioUsuario = servicioUsuario;
             _logger = logger;
+        }
+
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] Usuario nuevoUsuario)
+        {
+            try
+            {
+                var response = await _servicioUsuario.Register(nuevoUsuario);
+                if (response.Estado)
+                    return Ok(new { mensaje = response.Mensaje });
+
+                return BadRequest(new { error = response.Mensaje });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en el registro.");
+                return StatusCode(500, new { error = "Error interno del servidor" });
+            }
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequestDTO loginDto)
+        {
+            try
+            {
+                var user = await _servicioUsuario.Login(loginDto.Email, loginDto.Password);
+                if (user == null)
+                    return Unauthorized(new { error = "Credenciales inválidas" });
+
+                return Ok(new
+                {
+                    id = user.UsuarioId,
+                    nombre = user.Nombre,
+                    email = user.Email,
+                    esCliente = user.EsCliente
+                });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error en el login.");
+                return StatusCode(500, new { error = "Error interno del servidor" });
+            }
         }
 
         [HttpGet]

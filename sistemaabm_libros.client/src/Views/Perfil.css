@@ -1,0 +1,54 @@
+.perfil-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.perfil-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+    .perfil-form input {
+        padding: 0.75rem;
+        border: 1px solid #cbd5e0;
+        border-radius: 8px;
+        font-size: 1rem;
+        background-color: #f7fafc;
+        transition: border 0.3s ease;
+    }
+
+        .perfil-form input:focus {
+            outline: none;
+            border-color: #5a67d8;
+        }
+
+    .perfil-form button {
+        background-color: #5a67d8;
+        color: white;
+        font-weight: bold;
+        border: none;
+        border-radius: 8px;
+        padding: 0.75rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .perfil-form button:hover {
+            background-color: #434190;
+        }
+
+.perfil-mensaje {
+    color: green;
+    font-weight: bold;
+}
+
+.perfil-error {
+    color: red;
+    font-weight: bold;
+}

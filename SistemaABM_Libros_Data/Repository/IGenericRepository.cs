@@ -15,7 +15,7 @@ namespace SistemaABM_Libros_Data.Repository
             Task AddAsync(T entity);
             Task UpdateAsync(T entity);
             Task DeleteAsync(int id);
-
-
+            Task<T?> GetByEmailAsync(string email);
+            Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filtro);
     }
 }
