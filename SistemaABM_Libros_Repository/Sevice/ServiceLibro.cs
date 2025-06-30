@@ -110,8 +110,27 @@ namespace SistemaABM_Libros_Repository.Sevice
                     return new ResponseApi("Libro no encontrado.", false);
                 }
 
-                _mapper.Map(libroActualizar, existente);
+                // No sobrescribas Imagen si libroActualizar.Imagen es null o vacío
+                if (!string.IsNullOrEmpty(libroActualizar.Imagen))
+                {
+                    existente.Imagen = libroActualizar.Imagen;
+                }
+                // Mapear resto de campos excepto Imagen
+                existente.Titulo = libroActualizar.Titulo;
+                existente.Autor = libroActualizar.Autor;
+                existente.Isbn = libroActualizar.ISBN;
+                existente.TipoLibro = libroActualizar.TipoLibro;
+                existente.Precio = libroActualizar.Precio;
+                existente.Stock = libroActualizar.Stock;
+                existente.Idioma = libroActualizar.Idioma;
+                existente.Editorial = libroActualizar.Editorial;
+                existente.AnioPublicacion = libroActualizar.AnioPublicacion;
+                existente.Descripcion = libroActualizar.Descripcion;
+                existente.EstadoLibro = libroActualizar.EstadoLibro;
+                existente.SubcategoriaId = libroActualizar.SubcategoriaId;
+
                 await _repoLibro.UpdateAsync(existente);
+
                 _logger.LogInformation("Libro actualizado exitosamente: {Titulo} con ID: {Id}", libroActualizar.Titulo, libroActualizar.Id);
                 return new ResponseApi($"El libro '{libroActualizar.Titulo}' fue actualizado exitosamente.", true);
             }
@@ -121,5 +140,7 @@ namespace SistemaABM_Libros_Repository.Sevice
                 return new ResponseApi($"Error al actualizar el libro. Detalles: {ex.Message}", false);
             }
         }
+
+
     }
 }

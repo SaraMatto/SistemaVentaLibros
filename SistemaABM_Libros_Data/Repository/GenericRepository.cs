@@ -70,5 +70,19 @@ namespace SistemaABM_Libros_Data.Repository
         {
             return await _dbSet.Where(filtro).ToListAsync();
         }
+
+        public async Task<IEnumerable<T>> GetAllAsync(
+    Expression<Func<T, bool>> filtro,
+    params Expression<Func<T, object>>[] includes)
+        {
+            IQueryable<T> query = _context.Set<T>().Where(filtro);
+
+            foreach (var include in includes)
+            {
+                query = query.Include(include);
+            }
+
+            return await query.ToListAsync();
+        }
     }
 }

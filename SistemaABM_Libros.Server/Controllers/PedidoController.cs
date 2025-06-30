@@ -20,10 +20,6 @@ namespace SistemaABM_Libros.Server.Controllers
             _logger = logger;
         }
 
-        // --- Métodos Pedido (GetAll, GetById, Create, Update, Delete) ---
-        // (Asumo que ya los tienes, si querés te los genero también)
-
-        // --- Métodos para DetallePedido anidados ---
 
         [HttpGet("{pedidoId}/detalles")]
         public async Task<ActionResult<IEnumerable<DetallePedidoDTO>>> GetDetalles(int pedidoId)
@@ -48,7 +44,7 @@ namespace SistemaABM_Libros.Server.Controllers
                 if (!ModelState.IsValid)
                     return BadRequest(new ResponseApi("Fallo de validación.", false));
 
-                nuevoDetalle.PedidoId = pedidoId; // aseguramos que el detalle esté asociado al pedido correcto
+                nuevoDetalle.PedidoId = pedidoId;
                 var response = await _servicioDetallePedido.Create(nuevoDetalle);
 
                 if (response.Estado)
@@ -93,7 +89,6 @@ namespace SistemaABM_Libros.Server.Controllers
         {
             try
             {
-                // Opcional: podrías verificar que el detalle pertenece al pedidoId antes de eliminar
                 var response = await _servicioDetallePedido.Delete(detalleId);
 
                 if (response.Estado)
@@ -122,5 +117,74 @@ namespace SistemaABM_Libros.Server.Controllers
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<ResponseApi>> CrearPedido([FromBody] PedidoDTO nuevoPedido)
+        {
+            try
+            {
+                if (!ModelState.IsValid)
+                    return BadRequest(new ResponseApi("Fallo de validación.", false));
+
+                var response = await _servicioPedido.Create(nuevoPedido);
+
+                if (response.Estado)
+                    return Ok(response);
+                else
+                    return BadRequest(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al crear pedido.");
+                return StatusCode(500, new ResponseApi($"Error interno: {ex.Message}", false));
+            }
+        }
+
+        [HttpDelete("{pedidoId}")]
+        public async Task<ActionResult<ResponseApi>> EliminarPedido(int pedidoId)
+        {
+            try
+            {
+                var response = await _servicioPedido.Delete(pedidoId);
+                if (response.Estado)
+                    return Ok(response);
+                else
+                    return NotFound(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al eliminar pedido {pedidoId}.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
+
+        [HttpPut("CambiarEstado/{pedidoId}")]
+        public async Task<ActionResult<ResponseApi>> CambiarEstadoPedido(int pedidoId, [FromBody] string nuevoEstado)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(nuevoEstado))
+                    return BadRequest(new ResponseApi("El nuevo estado no puede estar vacío.", false));
+
+                var pedido = await _servicioPedido.GetById(pedidoId);
+                if (pedido == null)
+                    return NotFound(new ResponseApi("Pedido no encontrado.", false));
+
+                pedido.EstadoPedido = nuevoEstado;
+
+                var response = await _servicioPedido.Update(pedido);
+
+                if (response.Estado)
+                    return Ok(response);
+                else
+                    return BadRequest(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al cambiar estado del pedido {pedidoId}.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
+
     }
 }

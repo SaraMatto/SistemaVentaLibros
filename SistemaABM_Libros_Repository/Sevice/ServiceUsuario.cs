@@ -1,11 +1,10 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Logging;
 using SistemaABM_Libros_Data.Models;
 using SistemaABM_Libros_Data.Repository;
 using SistemaABM_Libros_Data.Response;
 using SistemaABM_Libros_Repository.Interface;
 using SistemaABM_Libros_TranferObject.ModelsDTO;
-using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 
 namespace SistemaABM_Libros_Repository.Sevice
 {
@@ -66,7 +65,7 @@ namespace SistemaABM_Libros_Repository.Sevice
             }
         }
 
-        public async Task<IEnumerable<UsuarioDTO>> GetAll()
+        public async Task<IEnumerable<UsuarioDTO?>> GetAll()
         {
             try
             {
@@ -101,7 +100,7 @@ namespace SistemaABM_Libros_Repository.Sevice
                 return new ResponseApi("El correo ya está registrado", false);
 
             usuario.FechaRegistro = DateTime.Now;
-
+            usuario.EsCliente = false;
             await _usuarioRepository.AddAsync(usuario);
 
             return new ResponseApi("Usuario registrado exitosamente", true);
@@ -123,15 +122,24 @@ namespace SistemaABM_Libros_Repository.Sevice
                 }
 
                 var usuarioExistente = await _usuarioRepository.GetByIdAsync(usuarioActualizar.Id);
-
+               
                 if (usuarioExistente == null)
                 {
                     _logger.LogWarning("Intento de actualizar usuario inexistente con ID: {UserId}", usuarioActualizar.Id);
                     return new ResponseApi("Usuario no encontrado.", false);
                 }
 
-                _mapper.Map(usuarioActualizar, usuarioExistente);
+
+                //_mapper.Map(usuarioActualizar, usuarioExistente);
+                usuarioExistente.Nombre = usuarioActualizar.Nombre ?? usuarioExistente.Nombre;
+                usuarioExistente.Apellido = usuarioActualizar.Apellido ?? usuarioExistente.Apellido;
+                usuarioExistente.Email = usuarioActualizar.Email ?? usuarioExistente.Email;
+                usuarioExistente.Telefono = usuarioActualizar.Telefono ?? usuarioExistente.Telefono;
+                usuarioExistente.FechaNacimiento = usuarioActualizar.FechaNacimiento ?? usuarioExistente.FechaNacimiento;
+
+
                 await _usuarioRepository.UpdateAsync(usuarioExistente);
+
                 _logger.LogInformation("Usuario actualizado exitosamente: {UserName} con ID: {UserId}", usuarioActualizar.Nombre, usuarioActualizar.Id);
                 return new ResponseApi($"El usuario '{usuarioActualizar.Nombre}' fue actualizado exitosamente.", true);
             }
@@ -141,5 +149,6 @@ namespace SistemaABM_Libros_Repository.Sevice
                 return new ResponseApi($"Error al actualizar el usuario. Por favor, inténtelo de nuevo. Detalles: {ex.Message}", false);
             }
         }
+
     }
 }

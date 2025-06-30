@@ -2,7 +2,7 @@ body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Your existing background */
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     overflow-x: hidden;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -59,7 +59,7 @@ body, html {
 }
 
 .libro-info {
-    text-align: left; /* Keep this for other text in libro-info like paragraphs */
+    text-align: left;
     width: 100%;
     flex-grow: 1;
     display: flex;
@@ -71,9 +71,9 @@ body, html {
         font-size: 1rem;
         margin: 0 0 0.5rem;
         color: #2d3748;
-        white-space: normal; /* Allows title to wrap if it's too long */
-        word-break: break-word; /* Breaks long words if necessary to prevent overflow */
-        text-align: center; /* <<< THIS IS THE ADDITION TO CENTER THE TITLE */
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
     }
 
     .libro-info p {
@@ -88,8 +88,10 @@ body, html {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 0.5rem; /* Espacio entre botones */
 }
 
+/* Botón Comprar */
 .btn-comprar {
     background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
     color: white;
@@ -119,35 +121,60 @@ body, html {
         background: linear-gradient(90deg, #705cb5 0%, #5d6eeb 100%);
     }
 
+/* Botones Editar y Eliminar unificados */
 
-/* Old edit/delete buttons (kept for reference if you ever re-enable them) */
 .btn-editar,
 .btn-eliminar {
-    padding: 0.4rem 0.8rem;
+    padding: 0.8rem 1.5rem;
     border: none;
-    border-radius: 6px;
-    font-size: 0.85rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
+    width: 48%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    outline: none;
+    color: white;
+    display: inline-block;
+    text-align: center;
 }
 
+/* Estilo azul para editar */
 .btn-editar {
-    background-color: #3182ce;
-    color: white;
+    background: linear-gradient(90deg, #3182ce 0%, #2c5282 100%);
 }
 
+    .btn-editar:hover {
+        background: linear-gradient(90deg, #2c5282 0%, #3182ce 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(44, 82, 130, 0.4);
+    }
+
+    .btn-editar:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(44, 82, 130, 0.3);
+        background: linear-gradient(90deg, #255d9c 0%, #244f7b 100%);
+    }
+
+/* Estilo rojo para eliminar */
 .btn-eliminar {
-    background-color: #e53e3e;
-    color: white;
+    background: linear-gradient(90deg, #e53e3e 0%, #c53030 100%);
 }
 
-.btn-editar:hover {
-    background-color: #2b6cb0;
-}
+    .btn-eliminar:hover {
+        background: linear-gradient(90deg, #c53030 0%, #e53e3e 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(197, 48, 48, 0.4);
+    }
 
-.btn-eliminar:hover {
-    background-color: #c53030;
-}
+    .btn-eliminar:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(197, 48, 48, 0.3);
+        background: linear-gradient(90deg, #b83232 0%, #d53f3f 100%);
+    }
 
 .error {
     color: #e53e3e;
@@ -178,4 +205,100 @@ body, html {
     .libro-info p {
         font-size: 0.85rem;
     }
+
+    /* En pantallas chicas los botones se apilan */
+    .libro-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn-editar,
+    .btn-eliminar {
+        width: 100%;
+    }
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #2d3748;
+}
+
+.btn-cancelar {
+    background: linear-gradient(90deg, #e53e3e 0%, #c53030 100%);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+    .btn-cancelar:hover {
+        background: linear-gradient(90deg, #c53030 0%, #e53e3e 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-cancelar:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(90deg, #b83232 0%, #d53f3f 100%);
+    }
+.btn-crear {
+    background: linear-gradient(90deg, #38a169 0%, #2f855a 100%);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    outline: none;
+}
+
+    .btn-crear:hover {
+        background: linear-gradient(90deg, #2f855a 0%, #38a169 100%);
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn-crear:active {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        background: linear-gradient(90deg, #2c7a4b 0%, #2e8b57 100%);
+    }

@@ -11,11 +11,16 @@ namespace SistemaABM_Libros.Server.Controllers
     {
         private readonly IServiceLibro _servicioLibro;
         private readonly ILogger<LibroController> _logger;
+        private readonly IServiceCategoria _repoCategoria;
+        private readonly IServiceSubcategoria _repoSubCategoria;
 
-        public LibroController(IServiceLibro servicioLibro, ILogger<LibroController> logger)
+
+        public LibroController(IServiceLibro servicioLibro, ILogger<LibroController> logger, IServiceCategoria repoCategoria, IServiceSubcategoria repoSubCategoria)
         {
             _servicioLibro = servicioLibro;
             _logger = logger;
+            _repoCategoria = repoCategoria;
+            _repoSubCategoria = repoSubCategoria;
         }
 
         [HttpGet]
@@ -53,16 +58,44 @@ namespace SistemaABM_Libros.Server.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseApi>> CrearLibro([FromBody] LibroDTO nuevoLibroDto)
+        public async Task<ActionResult<ResponseApi>> CrearLibro([FromForm] LibroDTO formData)
         {
             try
             {
-                if (!ModelState.IsValid)
+                string? fileName = null;
+
+                if (formData.ImagenFile != null && formData.ImagenFile.Length > 0)
                 {
-                    return BadRequest(new ResponseApi("Fallo de validación.", false));
+                    var extension = Path.GetExtension(formData.ImagenFile.FileName);
+                    fileName = $"{Guid.NewGuid()}{extension}";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "img", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formData.ImagenFile.CopyToAsync(stream);
+                    }
                 }
 
+                var nuevoLibroDto = new LibroDTO
+                {
+                    Titulo = formData.Titulo,
+                    Autor = formData.Autor,
+                    ISBN = formData.ISBN,
+                    TipoLibro = formData.TipoLibro,
+                    Precio = formData.Precio,
+                    Stock = formData.Stock,
+                    Idioma = formData.Idioma,
+                    Editorial = formData.Editorial,
+                    AnioPublicacion = formData.AnioPublicacion,
+                    Descripcion = formData.Descripcion,
+                    EstadoLibro = formData.EstadoLibro,
+                    SubcategoriaId = formData.SubcategoriaId,
+                    Imagen = fileName // nombre del archivo guardado o null
+                };
+
+                // Si tienes servicio específico para creación, úsalo
                 var response = await _servicioLibro.Create(nuevoLibroDto);
+
                 if (response.Estado)
                 {
                     return Ok(response);
@@ -80,31 +113,48 @@ namespace SistemaABM_Libros.Server.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<ResponseApi>> PutLibro([FromBody] LibroDTO libroActualizarDto)
+        public async Task<ActionResult<ResponseApi>> PutLibro([FromForm] LibroDTO formData)
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(new ResponseApi("Fallo de validación.", false));
-                }
+                string? fileName = null;
 
-                var response = await _servicioLibro.Update(libroActualizarDto);
-                if (response.Estado)
+                if (formData.ImagenFile != null && formData.ImagenFile.Length > 0)
                 {
-                    return Ok(response);
+                    var extension = Path.GetExtension(formData.ImagenFile.FileName);
+                    fileName = $"{Guid.NewGuid()}{extension}";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "img", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await formData.ImagenFile.CopyToAsync(stream);
+                    }
+
+                    formData.Imagen = fileName; // Asigna el nuevo nombre si hay imagen
                 }
                 else
                 {
-                    return NotFound(response);
+                    // Si no hay archivo, deberías conservar la imagen actual
+                    // Opcional: aquí puedes cargar la imagen actual del libro desde BD y asignarla a formData.Imagen
+                    var libroExistente = await _servicioLibro.GetById(formData.Id);
+                    if (libroExistente != null && string.IsNullOrEmpty(formData.Imagen))
+                    {
+                        formData.Imagen = libroExistente.Imagen;
+                    }
                 }
+
+                var response = await _servicioLibro.Update(formData);
+
+                return response.Estado ? Ok(response) : NotFound(response);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Error al actualizar el libro con ID {libroActualizarDto.Id}.");
+                _logger.LogError(ex, $"Error al actualizar el libro con ID {formData.Id}");
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
+
+
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<ResponseApi>> DeleteLibro(int id)
@@ -127,5 +177,79 @@ namespace SistemaABM_Libros.Server.Controllers
                 return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
             }
         }
+
+        // Obtener todas las categorías
+        [HttpGet("categorias")]
+        public async Task<ActionResult<IEnumerable<CategoriaDTO>>> GetCategorias()
+        {
+            try
+            {
+                var categorias = await _repoCategoria.GetAll();
+                return Ok(categorias);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener las categorías.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
+
+        // Obtener una categoría por ID
+        [HttpGet("categorias/{id}")]
+        public async Task<ActionResult<CategoriaDTO>> GetCategoriaById(int id)
+        {
+            try
+            {
+                var categoria = await _repoCategoria.GetById(id);
+                if (categoria == null)
+                    return NotFound(new ResponseApi($"Categoría con ID {id} no encontrada.", false));
+
+                return Ok(categoria);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al obtener la categoría con ID {id}.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
+
+        // Obtener todas las subcategorías
+        [HttpGet("subcategorias")]
+        public async Task<ActionResult<IEnumerable<SubcategoriaDTO>>> GetSubcategorias()
+        {
+            try
+            {
+                var subcategorias = await _repoSubCategoria.GetAll();
+                return Ok(subcategorias);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error al obtener las subcategorías.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
+
+        // Obtener una subcategoría por ID
+        [HttpGet("subcategorias/{id}")]
+        public async Task<ActionResult<SubcategoriaDTO>> GetSubcategoriaById(int id)
+        {
+            try
+            {
+                var subcategoria = await _repoSubCategoria.GetById(id);
+                if (subcategoria == null)
+                    return NotFound(new ResponseApi($"Subcategoría con ID {id} no encontrada.", false));
+
+                return Ok(subcategoria);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error al obtener la subcategoría con ID {id}.");
+                return StatusCode(500, new ResponseApi($"Error interno del servidor: {ex.Message}", false));
+            }
+        }
+
     }
+
+
+
 }

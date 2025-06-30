@@ -4,9 +4,9 @@ import Libros from "./Views/Libros";
 import Perfil from "./Views/Perfil";
 import Logout from "./Views/Logout";
 import Login from "./Components/Login";
-import ProtectedRoute from "./Components/ProtectedRoute"; 
+import ProtectedRoute from "./Components/ProtectedRoute";
 import Pedidos from "./Views/Pedidos";
-
+import ResetSession from "./Components/ResetSession";
 const Inicio = () => (
     <>
         <h1>Bienvenido a Sistema Libros</h1>
@@ -18,7 +18,9 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
+
                 <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
 
                 <Route
                     path="/dashboard"
@@ -32,11 +34,10 @@ function App() {
                     <Route path="libros" element={<Libros />} />
                     <Route path="perfil" element={<Perfil />} />
                     <Route path="pedidos" element={<Pedidos />} />
-
                 </Route>
 
-                <Route path="/logout" element={<Logout />} />
-                <Route path="*" element={<Navigate to="/dashboard" replace />} />
+                <Route path="/" element={<ResetSession />} />
+                <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </BrowserRouter>
     );

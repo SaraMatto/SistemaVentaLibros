@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq.Expressions;
 
 namespace SistemaABM_Libros_Data.Repository
 {
@@ -17,5 +12,6 @@ namespace SistemaABM_Libros_Data.Repository
             Task DeleteAsync(int id);
             Task<T?> GetByEmailAsync(string email);
             Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filtro);
+            Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>> filtro, params Expression<Func<T, object>>[] includes);
     }
 }

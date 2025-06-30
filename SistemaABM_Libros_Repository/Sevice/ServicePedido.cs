@@ -5,6 +5,7 @@ using SistemaABM_Libros_Data.Response;
 using SistemaABM_Libros_Repository.Interface;
 using SistemaABM_Libros_TranferObject.ModelsDTO;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
 
 namespace SistemaABM_Libros_Repository.Sevice
 {
@@ -13,34 +14,53 @@ namespace SistemaABM_Libros_Repository.Sevice
         private readonly IGenericRepository<Pedido> _repoPedido;
         private readonly IMapper _mapper;
         private readonly ILogger<ServicePedido> _logger;
-        private readonly IGenericRepository<DetallePedido> _repoDetalle; 
-
+        private readonly IGenericRepository<DetallePedido> _repoDetalle;
+        private readonly IGenericRepository<Usuario> _repoUsuario;
         public ServicePedido(
             IGenericRepository<Pedido> repoPedido,
             IGenericRepository<DetallePedido> repoDetalle,
             IMapper mapper,
-            ILogger<ServicePedido> logger)
+            ILogger<ServicePedido> logger,
+            IGenericRepository<Usuario> repoUsuario)
         {
             _repoPedido = repoPedido;
             _repoDetalle = repoDetalle; 
             _mapper = mapper;
             _logger = logger;
+            _repoUsuario = repoUsuario;
         }
 
         public async Task<ResponseApi> Create(PedidoDTO nuevoPedido)
         {
             try
             {
-                if (nuevoPedido == null)
+                if (nuevoPedido == null || nuevoPedido.Detalles == null || !nuevoPedido.Detalles.Any())
                 {
-                    _logger.LogWarning("Método Crear llamado con PedidoDTO nulo.");
+                    _logger.LogWarning("Pedido o detalles nulos.");
                     return new ResponseApi("Los datos del pedido no pueden ser nulos.", false);
                 }
 
-                var entidad = _mapper.Map<Pedido>(nuevoPedido);
-                await _repoPedido.AddAsync(entidad);
-                _logger.LogInformation("Pedido creado exitosamente con ID Usuario: {IdUsuario}", nuevoPedido.UsuarioId);
-                return new ResponseApi("El pedido fue creado exitosamente.", true);
+              
+                var pedidoEntidad = _mapper.Map<Pedido>(nuevoPedido);
+
+
+                await _repoPedido.AddAsync(pedidoEntidad);
+
+
+                foreach (var detalleDto in nuevoPedido.Detalles)
+                {
+                    var detalle = new DetallePedido
+                    {
+                        PedidoId = pedidoEntidad.PedidoId,
+                        LibroId = detalleDto.LibroId,
+                        Cantidad = detalleDto.Cantidad,
+                        PrecioUnitario = detalleDto.PrecioUnitario
+                    };
+
+                    await _repoDetalle.AddAsync(detalle); 
+                }
+
+                return new ResponseApi("El pedido y sus detalles fueron creados exitosamente.", true);
             }
             catch (Exception ex)
             {
@@ -48,6 +68,7 @@ namespace SistemaABM_Libros_Repository.Sevice
                 return new ResponseApi($"Error al crear el pedido. Detalles: {ex.Message}", false);
             }
         }
+
 
         public async Task<ResponseApi> Delete(int id)
         {
@@ -60,9 +81,18 @@ namespace SistemaABM_Libros_Repository.Sevice
                     return new ResponseApi("Pedido no encontrado.", false);
                 }
 
+                // Eliminar detalles relacionados
+                var detalles = await _repoDetalle.GetAllAsync(d => d.PedidoId == id);
+                foreach (var detalle in detalles)
+                {
+                    await _repoDetalle.DeleteAsync(detalle.DetallePedidoId); // Ajusta el Id según tu modelo
+                }
+
+                // Ahora eliminar el pedido
                 await _repoPedido.DeleteAsync(id);
-                _logger.LogInformation("Pedido con ID: {Id} eliminado exitosamente.", id);
-                return new ResponseApi("Pedido eliminado exitosamente.", true);
+
+                _logger.LogInformation("Pedido con ID: {Id} y sus detalles eliminados exitosamente.", id);
+                return new ResponseApi("Pedido y detalles eliminados exitosamente.", true);
             }
             catch (Exception ex)
             {
@@ -132,15 +162,38 @@ namespace SistemaABM_Libros_Repository.Sevice
         {
             try
             {
-                var pedidos = await _repoPedido.GetAllAsync(p => p.UsuarioId == usuarioId);
+         
+                var usuario = await _repoUsuario.GetByIdAsync(usuarioId);
+               
+                if (usuario == null)
+                {
+                    _logger.LogWarning("Usuario no encontrado con ID: {UsuarioId}", usuarioId);
+                    return Enumerable.Empty<PedidoDTO>();
+                }
+
+                IEnumerable<Pedido> pedidos;
+
+                if (!usuario.EsCliente)
+                {
+            
+                    pedidos = await _repoPedido.GetAllAsync(p => p.UsuarioId == usuarioId);
+                }
+                else
+                {
+             
+                    pedidos = await _repoPedido.GetAllAsync();
+                }
 
                 var pedidosDto = _mapper.Map<List<PedidoDTO>>(pedidos);
 
                 foreach (var pedidoDto in pedidosDto)
                 {
-                    var detalles = await _repoDetalle.GetAllAsync(d => d.PedidoId == pedidoDto.PedidoID);
-                    var detallesDto = _mapper.Map<List<DetallePedidoDTO>>(detalles);
+                    var detalles = await _repoDetalle.GetAllAsync(
+                        d => d.PedidoId == pedidoDto.PedidoID,
+                        d => d.Libro 
+                    );
 
+                    var detallesDto = _mapper.Map<List<DetallePedidoDTO>>(detalles);
                     pedidoDto.Detalles = detallesDto;
                 }
 
@@ -152,5 +205,8 @@ namespace SistemaABM_Libros_Repository.Sevice
                 return Enumerable.Empty<PedidoDTO>();
             }
         }
+
+
+    
     }
 }

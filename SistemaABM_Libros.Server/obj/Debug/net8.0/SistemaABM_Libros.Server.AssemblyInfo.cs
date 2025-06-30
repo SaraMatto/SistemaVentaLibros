@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SistemaABM_Libros.Server")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7eb6f13419d927a6d97d342e4a00788b6e3f1f25")]
 [assembly: System.Reflection.AssemblyProductAttribute("SistemaABM_Libros.Server")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SistemaABM_Libros.Server")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace SistemaABM_Libros_TranferObject.ModelsDTO
         public string? Descripcion { get; set; }
         public string? EstadoLibro { get; set; }
         public string? Imagen { get; set; }
-
+        public IFormFile? ImagenFile { get; set; }
         public SubcategoriaDTO? Subcategoria { get; set; } 
     }
 
