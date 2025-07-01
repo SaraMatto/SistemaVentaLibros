@@ -15,3 +15,21 @@ C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaA.E76D60A5.Up2Date
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.deps.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.runtimeconfig.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_Data.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.csproj.AssemblyReference.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.AssemblyInfoInputs.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.AssemblyInfo.cs
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.csproj.CoreCompileInputs.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.sourcelink.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaA.E76D60A5.Up2Date
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\refint\SistemaABM_Libros_Data.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\SistemaABM_Libros_Data.genruntimeconfig.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Data\obj\Debug\net8.0\ref\SistemaABM_Libros_Data.dll

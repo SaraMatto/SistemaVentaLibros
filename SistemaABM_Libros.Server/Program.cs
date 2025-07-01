@@ -31,15 +31,14 @@ builder.Services.AddScoped<IServiceDetallePedido, ServiceDetallePedido>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
-        policy.WithOrigins("https://localhost:62614") // origen exacto de tu front
+        policy.AllowAnyOrigin()
               .AllowAnyMethod()
-              .AllowAnyHeader()
-              .AllowCredentials());
+              .AllowAnyHeader());
 });
 
 
 var app = builder.Build();
-// Habilitar CORS usando la política definida
+// Habilitar CORS usando la polï¿½tica definida
 app.UseCors("AllowAll");
 app.UseDefaultFiles();
 app.UseStaticFiles(new StaticFileOptions

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Pedidos.css";
 
+const API_PEDIDO_URL = "http://localhost:5125/api/Pedido";
+
 const Pedidos = () => {
     const [pedidos, setPedidos] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -22,7 +24,7 @@ const Pedidos = () => {
         if (!window.confirm("¿Estás seguro de eliminar este pedido?")) return;
 
         try {
-            const res = await fetch(`https://localhost:44359/api/Pedido/${pedidoId}`, {
+            const res = await fetch(`${API_PEDIDO_URL}/${pedidoId}`, {
                 method: "DELETE",
             });
             if (!res.ok) throw new Error("Error al eliminar el pedido.");
@@ -38,7 +40,7 @@ const Pedidos = () => {
 
         try {
             const res = await fetch(
-                `https://localhost:44359/api/Pedido/CambiarEstado/${modalEstado.pedidoId}`,
+                `${API_PEDIDO_URL}/CambiarEstado/${modalEstado.pedidoId}`,
                 {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
@@ -63,7 +65,7 @@ const Pedidos = () => {
         const fetchPedidos = async () => {
             try {
                 const res = await fetch(
-                    `https://localhost:44359/api/Pedido/usuario/${usuarioRef.current.id}`
+                    `${API_PEDIDO_URL}/usuario/${usuarioRef.current.id}`
                 );
                 if (!res.ok) throw new Error("Error al obtener pedidos.");
                 const data = await res.json();

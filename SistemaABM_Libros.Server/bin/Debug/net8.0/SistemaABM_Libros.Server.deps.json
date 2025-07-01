@@ -9,7 +9,7 @@
       "SistemaABM_Libros.Server/1.0.0": {
         "dependencies": {
           "AutoMapper": "14.0.0",
-          "Microsoft.AspNetCore.SpaProxy": "8.0.16",
+          "Microsoft.AspNetCore.SpaProxy": "8.0.17",
           "SistemaABM_Libros_Data": "1.0.0",
           "SistemaABM_Libros_Repository": "1.0.0",
           "Swashbuckle.AspNetCore": "6.6.2"
@@ -64,11 +64,17 @@
           }
         }
       },
-      "Microsoft.AspNetCore.SpaProxy/8.0.16": {
+      "Microsoft.AspNetCore.Http.Features/5.0.17": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "9.0.5",
+          "System.IO.Pipelines": "9.0.5"
+        }
+      },
+      "Microsoft.AspNetCore.SpaProxy/8.0.17": {
         "runtime": {
           "lib/net8.0/Microsoft.AspNetCore.SpaProxy.dll": {
-            "assemblyVersion": "8.0.16.0",
-            "fileVersion": "8.0.1625.21611"
+            "assemblyVersion": "8.0.17.0",
+            "fileVersion": "8.0.1725.26609"
           }
         }
       },
@@ -693,7 +699,7 @@
         },
         "runtime": {
           "SistemaABM_Libros_Data.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -705,15 +711,18 @@
         },
         "runtime": {
           "SistemaABM_Libros_Repository.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
       },
       "SistemaABM_Libros_TranferObject/1.0.0": {
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Features": "5.0.17"
+        },
         "runtime": {
           "SistemaABM_Libros_TranferObject.dll": {
-            "assemblyVersion": "1.0.0",
+            "assemblyVersion": "1.0.0.0",
             "fileVersion": "1.0.0.0"
           }
         }
@@ -747,12 +756,19 @@
       "path": "azure.identity/1.11.4",
       "hashPath": "azure.identity.1.11.4.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.SpaProxy/8.0.16": {
+    "Microsoft.AspNetCore.Http.Features/5.0.17": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-epkhyVdorPlnTz3k839y9UkdaWYLA2I8NCZXCw9AbO4tSnpGrn7ufLv/oy5sl/gLCLHrEkhJX+VmiVN6im427w==",
-      "path": "microsoft.aspnetcore.spaproxy/8.0.16",
-      "hashPath": "microsoft.aspnetcore.spaproxy.8.0.16.nupkg.sha512"
+      "sha512": "sha512-3jG2xS+dx8DDCGV/F+STdPTg89lX3ao3dF/VEPvJaz3wzBIjuadipTtYNEXDIVuOPZwb6jdmhrX9jkzOIBm5cw==",
+      "path": "microsoft.aspnetcore.http.features/5.0.17",
+      "hashPath": "microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.SpaProxy/8.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2Z9U+Uejld4j+cKKfzgwQBYunmQsqCvrTNNjyTcg5i4BV+LEY72tEd49DECrJhbnvTVNNzpoU5UJr8cHaAbhZw==",
+      "path": "microsoft.aspnetcore.spaproxy/8.0.17",
+      "hashPath": "microsoft.aspnetcore.spaproxy.8.0.17.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
       "type": "package",

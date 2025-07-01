@@ -15,3 +15,21 @@ C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Repo
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.csproj.AssemblyReference.cache
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaA.86783314.Up2Date
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_Repository.deps.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_Repository.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_Repository.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_Data.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_Data.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.csproj.AssemblyReference.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.AssemblyInfoInputs.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.AssemblyInfo.cs
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.csproj.CoreCompileInputs.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.sourcelink.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaA.86783314.Up2Date
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\refint\SistemaABM_Libros_Repository.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\SistemaABM_Libros_Repository.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_Repository\obj\Debug\net8.0\ref\SistemaABM_Libros_Repository.dll

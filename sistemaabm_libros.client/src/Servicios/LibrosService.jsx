@@ -1,10 +1,10 @@
-
-const API_BASE_URL = "https://localhost:44359/api/Libro";
+const API_BASE_URL = "http://localhost:5125/api/Libro";
+const PEDIDO_BASE_URL = "http://localhost:5125/api/Pedido"; // Cambiado a HTTP y puerto correcto
 
 export async function getLibros() {
     const response = await fetch(API_BASE_URL);
     if (!response.ok) throw new Error("Error al obtener libros");
-    return response.json();
+    return await response.json();
 }
 
 export async function actualizarLibro(formData) {
@@ -23,12 +23,17 @@ export async function eliminarLibro(id) {
     });
 
     if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData?.mensaje || "Error al eliminar libro");
+        let errorMsg = "Error al eliminar libro";
+        try {
+            const errorData = await response.json();
+            if (errorData?.mensaje) errorMsg = errorData.mensaje;
+        } catch {
+            // No action needed: si no hay cuerpo JSON, dejamos el mensaje por defecto
+        }
+        throw new Error(errorMsg);
     }
-    return response.json();
+    return await response.json();
 }
-
 export async function crearLibro(nuevoLibro) {
     const formData = new FormData();
 
@@ -46,7 +51,6 @@ export async function crearLibro(nuevoLibro) {
     formData.append("categoriaId", nuevoLibro.categoriaId || "");
     formData.append("subcategoriaId", nuevoLibro.subcategoriaId || 0);
 
-
     if (nuevoLibro.imagen) {
         formData.append("ImagenFile", nuevoLibro.imagen);
     }
@@ -57,27 +61,33 @@ export async function crearLibro(nuevoLibro) {
     });
 
     if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData?.mensaje || "Error al crear libro");
+        let errorMsg = "Error al crear libro";
+        try {
+            const errorData = await response.json();
+            if (errorData?.mensaje) errorMsg = errorData.mensaje;
+        } catch {
+           // No action needed: si no hay cuerpo JSON, dejamos el mensaje por defecto
+        }
+        throw new Error(errorMsg);
     }
 
-    return response.json();
+    return await response.json();
 }
 
 export async function getCategorias() {
     const response = await fetch(`${API_BASE_URL}/categorias`);
-    if (!response.ok) throw new Error("Error al obtener categorías");
-    return response.json();
+    if (!response.ok) throw new Error("Error al obtener categorÃ­as");
+    return await response.json();
 }
 
 export async function getSubcategorias() {
     const response = await fetch(`${API_BASE_URL}/subcategorias`);
-    if (!response.ok) throw new Error("Error al obtener subcategorías");
-    return response.json();
+    if (!response.ok) throw new Error("Error al obtener subcategorÃ­as");
+    return await response.json();
 }
 
 export async function crearPedido(pedido) {
-    const response = await fetch("https://localhost:44359/api/Pedido", {
+    const response = await fetch(PEDIDO_BASE_URL, { // Usar HTTP y puerto 5125
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -86,9 +96,15 @@ export async function crearPedido(pedido) {
     });
 
     if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData?.mensaje || "Error al registrar el pedido");
+        let errorMsg = "Error al registrar el pedido";
+        try {
+            const errorData = await response.json();
+            if (errorData?.mensaje) errorMsg = errorData.mensaje;
+        } catch {
+            // No action needed: si no hay cuerpo JSON, dejamos el mensaje por defecto
+        }
+        throw new Error(errorMsg);
     }
 
-    return response.json();
+    return await response.json();
 }

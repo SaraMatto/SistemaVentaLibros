@@ -55,7 +55,7 @@ const Libros = () => {
     });
 
     const usuario = JSON.parse(localStorage.getItem("usuario"));
-    const esCliente = usuario?.esCliente != true;
+    const esCliente = usuario?.esCliente === true;
     console.log(esCliente);
     console.log(usuario);
 
@@ -90,6 +90,15 @@ const Libros = () => {
         setter({ ...base, [name]: newVal });
     };
 
+    // Esta función busca un libro por id y devuelve su stock
+    function buscarStockPorId(libros, idLibro) {
+        const libro = libros.find(l => l.id === idLibro);
+        if (libro) {
+            return libro.stock;
+        }
+        return null;
+    }
+
     const handleComprar = (libro) => {
         setModalComprar(libro);
         setPedidoCantidad(1);
@@ -105,16 +114,28 @@ const Libros = () => {
             return;
         }
 
+        const cantidadPedida = parseInt(pedidoCantidad, 10);
+        const stockActual = buscarStockPorId(libros, modalComprar.id);
+
+        if (cantidadPedida > stockActual) {
+            alert("No hay suficiente stock disponible.");
+            return;
+        }
+        if (cantidadPedida <= 0) {
+            alert("La cantidad debe ser mayor a 0.");
+            return;
+        }
+
         const pedido = {
             usuarioId: usuario.id,
             fechaPedido: new Date().toISOString(),
             estadoPedido: "Pendiente",
-            totalPedido: modalComprar.precio * pedidoCantidad,
+            totalPedido: modalComprar.precio * cantidadPedida,
             direccionEnvio: pedidoDireccion,
             detalles: [
                 {
                     libroId: modalComprar.id,
-                    cantidad: parseInt(pedidoCantidad),
+                    cantidad: cantidadPedida,
                     precioUnitario: modalComprar.precio,
                     tituloLibro: modalComprar.titulo,
                 },
@@ -122,7 +143,7 @@ const Libros = () => {
         };
 
         try {
-            await crearPedido(pedido); // ✅ usamos el nuevo servicio
+            await crearPedido(pedido);
             alert("¡Pedido realizado con éxito!");
             setModalComprar(null);
         } catch (err) {
@@ -130,12 +151,10 @@ const Libros = () => {
         }
     };
 
-
-
     const handleCrearSubmit = async (e) => {
         e.preventDefault();
         try {
-            const creado = await crearLibro(nuevoLibro); // solo pasa el objeto
+            const creado = await crearLibro(nuevoLibro);
             setLibros([...libros, creado]);
             setModalCrear(false);
             setNuevoLibro({
@@ -154,14 +173,13 @@ const Libros = () => {
                 subcategoriaId: "",
                 imagen: null,
             });
-            window.location.reload(); 
+            window.location.reload();
         } catch (e) {
             alert("Error al crear libro: " + e.message);
         }
     };
 
     const handleAbrirEditar = (libro) => {
-        // Obtener categoriaId desde libro o buscar por subcategoria si no viene directo
         let categoriaIdStr = "";
         if (libro.categoriaId) {
             categoriaIdStr = String(libro.categoriaId);
@@ -200,19 +218,17 @@ const Libros = () => {
         formData.append("subcategoriaId", editarDatos.subcategoriaId);
 
         if (editarDatos.imagen instanceof File) {
-            formData.append("ImagenFile", editarDatos.imagen); // <- nombre debe coincidir con el parámetro del backend
+            formData.append("ImagenFile", editarDatos.imagen);
         }
 
         try {
             await actualizarLibro(formData);
             setModalEditar(null);
-            window.location.reload(); // fuerza recarga completa para actualizar la vista
+            window.location.reload();
         } catch (e) {
             alert("Error al actualizar: " + e.message);
         }
-
     };
-
 
     const handleEliminar = (libro) => {
         setModalEliminar(libro);
@@ -228,7 +244,6 @@ const Libros = () => {
             alert("Error al eliminar libro: " + e.message);
         }
     };
-
 
     return (
         <div className="libros-wrapper">
@@ -258,9 +273,11 @@ const Libros = () => {
                             <p>
                                 <strong>Precio:</strong> ${libro.precio}
                             </p>
+                            <p>
+                                <strong>Stock:</strong> {libro.stock}
+                            </p>
                         </div>
 
-                        {/* Botones según tipo de usuario */}
                         <div className="libro-actions">
                             {esCliente ? (
                                 <button className="btn-comprar" onClick={() => handleComprar(libro)}>
@@ -281,7 +298,6 @@ const Libros = () => {
                 ))}
             </div>
 
-            {/* Modal COMPRAR */}
             {modalComprar && (
                 <div className="modal-overlay" onClick={() => setModalComprar(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "500px" }}>
@@ -329,8 +345,6 @@ const Libros = () => {
                 </div>
             )}
 
-
-            {/* Modal CREAR */}
             {modalCrear && (
                 <div className="modal-overlay" onClick={() => setModalCrear(false)}>
                     <div
@@ -368,7 +382,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Autor:
                                 <input
@@ -380,7 +393,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 ISBN:
                                 <input
@@ -391,7 +403,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Precio:
                                 <input
@@ -405,7 +416,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Stock:
                                 <input
@@ -418,7 +428,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Idioma:
                                 <input
@@ -429,7 +438,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Editorial:
                                 <input
@@ -440,7 +448,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Año de Publicación:
                                 <input
@@ -455,7 +462,6 @@ const Libros = () => {
                                     placeholder="Ej: 2021"
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Descripción:
                                 <textarea
@@ -466,7 +472,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Estado Libro:
                                 <input
@@ -477,7 +482,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Tipo:
                                 <select
@@ -492,7 +496,6 @@ const Libros = () => {
                                     <option value="Usado">Usado</option>
                                 </select>
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Categoría:
                                 <select
@@ -500,7 +503,7 @@ const Libros = () => {
                                     value={nuevoLibro.categoriaId || ""}
                                     onChange={(e) => {
                                         const newCategoriaId = e.target.value;
-                                        handleInputChange(e); // para actualizar nuevoLibro.categoriaId
+                                        handleInputChange(e);
                                         setNuevoLibro((prev) => ({
                                             ...prev,
                                             categoriaId: newCategoriaId,
@@ -518,7 +521,6 @@ const Libros = () => {
                                     ))}
                                 </select>
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Subcategoría:
                                 <select
@@ -539,7 +541,6 @@ const Libros = () => {
                                         ))}
                                 </select>
                             </label>
-
                             <label style={{ textAlign: "left" }}>
                                 Imagen:
                                 <input
@@ -550,7 +551,6 @@ const Libros = () => {
                                     accept="image/*"
                                 />
                             </label>
-
                             <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1rem" }}>
                                 <button type="submit" className="btn-editar">
                                     Crear
@@ -564,8 +564,6 @@ const Libros = () => {
                 </div>
             )}
 
-
-            {/* Modal EDITAR */}
             {modalEditar && (
                 <div className="modal-overlay" onClick={() => setModalEditar(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: "600px" }}>
@@ -593,7 +591,6 @@ const Libros = () => {
                                 handleGuardarEdicion();
                             }}
                         >
-                            {/* Título */}
                             <label style={{ textAlign: "left" }}>
                                 Título:
                                 <input
@@ -605,8 +602,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
-                            {/* Autor */}
                             <label style={{ textAlign: "left" }}>
                                 Autor:
                                 <input
@@ -618,8 +613,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
-                            {/* ISBN */}
                             <label style={{ textAlign: "left" }}>
                                 ISBN:
                                 <input
@@ -630,8 +623,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
-                            {/* Precio */}
                             <label style={{ textAlign: "left" }}>
                                 Precio:
                                 <input
@@ -645,8 +636,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
-                            {/* Stock */}
                             <label style={{ textAlign: "left" }}>
                                 Stock:
                                 <input
@@ -659,8 +648,6 @@ const Libros = () => {
                                     required
                                 />
                             </label>
-
-                            {/* Idioma */}
                             <label style={{ textAlign: "left" }}>
                                 Idioma:
                                 <input
@@ -671,8 +658,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
-                            {/* Editorial */}
                             <label style={{ textAlign: "left" }}>
                                 Editorial:
                                 <input
@@ -683,8 +668,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
-                            {/* Año de Publicación (texto, solo año) */}
                             <label style={{ textAlign: "left" }}>
                                 Año de Publicación:
                                 <input
@@ -699,8 +682,6 @@ const Libros = () => {
                                     placeholder="Ej: 2021"
                                 />
                             </label>
-
-                            {/* Descripción */}
                             <label style={{ textAlign: "left" }}>
                                 Descripción:
                                 <textarea
@@ -711,8 +692,6 @@ const Libros = () => {
                                     style={inputStyle}
                                 />
                             </label>
-
-                            {/* Estado Libro (input texto) */}
                             <label style={{ textAlign: "left" }}>
                                 Estado Libro:
                                 <input
@@ -721,10 +700,8 @@ const Libros = () => {
                                     value={editarDatos.estadoLibro || ""}
                                     onChange={(e) => handleInputChange(e, "editar")}
                                     style={inputStyle}
-                                    
                                 />
                             </label>
-                            {/* Tipo (input texto) */}
                             <label style={{ textAlign: "left" }}>
                                 Tipo:
                                 <select
@@ -739,8 +716,6 @@ const Libros = () => {
                                     <option value="Usado">Usado</option>
                                 </select>
                             </label>
-
-                            {/* Categoría */}
                             <label style={{ textAlign: "left" }}>
                                 Categoría:
                                 <select
@@ -751,7 +726,7 @@ const Libros = () => {
                                         setEditarDatos((prev) => ({
                                             ...prev,
                                             categoriaId: newCategoriaId,
-                                            subcategoriaId: "", // Limpiar subcategoría al cambiar categoría
+                                            subcategoriaId: "",
                                         }));
                                     }}
                                     style={inputStyle}
@@ -765,8 +740,6 @@ const Libros = () => {
                                     ))}
                                 </select>
                             </label>
-
-                            {/* Subcategoría */}
                             <label style={{ textAlign: "left" }}>
                                 Subcategoría:
                                 <select
@@ -789,9 +762,6 @@ const Libros = () => {
                                         ))}
                                 </select>
                             </label>
-
-
-                            {/* Imagen */}
                             <label style={{ textAlign: "left" }}>
                                 Imagen:
                                 <input
@@ -802,8 +772,6 @@ const Libros = () => {
                                     accept="image/*"
                                 />
                             </label>
-
-                            {/* Botones */}
                             <div style={{ display: "flex", justifyContent: "center", gap: "1rem", marginTop: "1rem" }}>
                                 <button type="submit" className="btn-editar">
                                     Guardar
@@ -817,8 +785,6 @@ const Libros = () => {
                 </div>
             )}
 
-
-            {/* Modal ELIMINAR */}
             {modalEliminar && (
                 <div className="modal-overlay" onClick={() => setModalEliminar(null)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>

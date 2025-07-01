@@ -1,39 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj": {}
+    "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj": {
+    "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj",
+        "projectUniqueName": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj",
         "projectName": "SistemaABM_Libros_Data",
-        "projectPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj",
-        "packagesPath": "C:\\Users\\Martin Sarandeses\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Data\\obj\\",
+        "projectPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj",
+        "packagesPath": "C:\\Users\\Facundo\\.nuget\\packages\\",
+        "outputPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Data\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Martin Sarandeses\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Facundo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj": {
-                "projectPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj"
+              "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj": {
+                "projectPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj"
               }
             }
           }
@@ -48,7 +42,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -95,43 +89,37 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj": {
+    "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj",
+        "projectUniqueName": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj",
         "projectName": "SistemaABM_Libros_Repository",
-        "projectPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj",
-        "packagesPath": "C:\\Users\\Martin Sarandeses\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Repository\\obj\\",
+        "projectPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Repository\\SistemaABM_Libros_Repository.csproj",
+        "packagesPath": "C:\\Users\\Facundo\\.nuget\\packages\\",
+        "outputPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Repository\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Martin Sarandeses\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Facundo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj": {
-                "projectPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj"
+              "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj": {
+                "projectPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_Data\\SistemaABM_Libros_Data.csproj"
               },
-              "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj": {
-                "projectPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj"
+              "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj": {
+                "projectPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj"
               }
             }
           }
@@ -146,7 +134,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
@@ -167,32 +155,26 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj": {
+    "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj",
+        "projectUniqueName": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj",
         "projectName": "SistemaABM_Libros_TranferObject",
-        "projectPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj",
-        "packagesPath": "C:\\Users\\Martin Sarandeses\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Martin Sarandeses\\source\\repos\\SistemaABM_Libros\\SistemaABM_Libros_TranferObject\\obj\\",
+        "projectPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\SistemaABM_Libros_TranferObject.csproj",
+        "packagesPath": "C:\\Users\\Facundo\\.nuget\\packages\\",
+        "outputPath": "C:\\ort\\PNT-PROYECTO\\SistemaVentaLibros\\SistemaABM_Libros_TranferObject\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Martin Sarandeses\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\Facundo\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -211,11 +193,17 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Http.Features": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -232,7 +220,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.301/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

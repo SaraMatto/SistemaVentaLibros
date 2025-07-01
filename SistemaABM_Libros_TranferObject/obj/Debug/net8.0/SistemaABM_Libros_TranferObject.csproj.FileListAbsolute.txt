@@ -9,3 +9,16 @@ C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_Tran
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\refint\SistemaABM_Libros_TranferObject.dll
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
 C:\Users\Martin Sarandeses\source\repos\SistemaABM_Libros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\ref\SistemaABM_Libros_TranferObject.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.deps.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\bin\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.csproj.AssemblyReference.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.GeneratedMSBuildEditorConfig.editorconfig
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.AssemblyInfoInputs.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.AssemblyInfo.cs
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.csproj.CoreCompileInputs.cache
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.sourcelink.json
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\refint\SistemaABM_Libros_TranferObject.dll
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\SistemaABM_Libros_TranferObject.pdb
+C:\ort\PNT-PROYECTO\SistemaVentaLibros\SistemaABM_Libros_TranferObject\obj\Debug\net8.0\ref\SistemaABM_Libros_TranferObject.dll
