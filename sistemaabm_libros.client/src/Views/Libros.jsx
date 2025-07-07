@@ -90,7 +90,6 @@ const Libros = () => {
         setter({ ...base, [name]: newVal });
     };
 
-    // Esta función busca un libro por id y devuelve su stock
     function buscarStockPorId(libros, idLibro) {
         const libro = libros.find(l => l.id === idLibro);
         if (libro) {
@@ -308,16 +307,15 @@ const Libros = () => {
                         <form onSubmit={handleConfirmarCompra}>
                             <label style={{ textAlign: "left" }}>
                                 Cantidad:
-                                <input
+                                  <input
                                     type="number"
                                     name="cantidad"
                                     min="1"
-                                    max={modalComprar.stock}
                                     value={pedidoCantidad}
                                     onChange={(e) => setPedidoCantidad(e.target.value)}
                                     style={inputStyle}
                                     required
-                                />
+                                 />
                             </label>
 
                             <label style={{ textAlign: "left" }}>
